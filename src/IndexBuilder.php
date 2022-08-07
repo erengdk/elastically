@@ -54,7 +54,7 @@ class IndexBuilder
 
         $data = ['actions' => []];
 
-        $data['actions'][] = ['remove' => ['index' => '*', 'alias' => $indexName]];
+        $data['actions'][] = ['remove' => ['index' => sprintf('%s_*', $indexName), 'alias' => $indexName]];
         $data['actions'][] = ['add' => ['index' => $index->getName(), 'alias' => $indexName]];
 
         return $this->client->request('_aliases', Request::POST, $data);
